@@ -53,7 +53,7 @@ function search(){
     .then(response => response.text())
     .then(function(text) {
       let tbody = document.getElementById('tbody-professores');     
-      let aluno = JSON.parse(text);
+      let professor = JSON.parse(text);
       console.log(professor);    
       
       tbody.innerHTML = ` <tr>
@@ -80,7 +80,7 @@ function get_by_id(id_professor){
  }
  
  
-function load_aluno(id_professor){
+function load_professor(id_professor){
     get_by_id(id_professor).then(professor =>{
         document.getElementById("id").value = professor.id;
         document.getElementById("nome").value = professor.nome;
@@ -109,15 +109,15 @@ function save(){
 }
  
  
-function update(aluno){
+function update(professor){
     let mensagem = document.getElementById("mensagem");
-    fetch(`${api_url}/${aluno.id}`,{
+    fetch(`${api_url}/${professor.id}`,{
         method: 'PUT',
         headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
         },
-        body: JSON.stringify(aluno)
+        body: JSON.stringify(professor)
     })
 
     .then(response => {
@@ -130,7 +130,7 @@ function update(aluno){
 }
  
  
-function create(aluno){
+function create(professor){
     let mensagem = document.getElementById("mensagem");
     fetch(api_url,{
         method: 'POST',
@@ -138,7 +138,7 @@ function create(aluno){
         'Accept': 'application/json',
         'Content-Type': 'application/json'
         },
-        body: JSON.stringify(aluno)
+        body: JSON.stringify(professor)
     })
     .then(response => {
         if(response.status == 201){
